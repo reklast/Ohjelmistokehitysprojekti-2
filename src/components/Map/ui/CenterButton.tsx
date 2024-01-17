@@ -7,6 +7,8 @@ import { AppConfig } from '@lib/AppConfig'
 
 import useMapContext from '../useMapContext'
 
+[61.924100000000, 25.748200000000] as LatLngExpression
+
 interface CenterButtonProps {
   center: LatLngExpression
   zoom: number

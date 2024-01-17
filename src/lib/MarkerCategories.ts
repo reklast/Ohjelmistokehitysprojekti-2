@@ -29,7 +29,7 @@ const MarkerCategories: MarkerCategoryType = {
   [Category.CAT1]: {
     name: 'Category 1',
     icon: Leaf,
-    color: colors.blue[400],
+    color: colors.blue[200],
   },
   [Category.CAT2]: {
     name: 'Category 2',
