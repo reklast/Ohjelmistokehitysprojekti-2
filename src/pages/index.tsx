@@ -2,6 +2,9 @@ import { Leaf } from 'lucide-react'
 import Head from 'next/head'
 import Link from 'next/link'
 
+import FinApi from '@pages/FinApi'
+import PlacesAPI from '@pages/PlacesAPI'
+
 import NavMenu from '@components/common/NavMenu'
 
 import { AppConfig } from '@lib/AppConfig'
@@ -83,6 +86,8 @@ const Home = () => (
       <div className="text-primary">
         <Leaf size={AppConfig.ui.mapIconSize} className="mt-2" />
       </div>
+      <FinApi />
+      <PlacesAPI />
     </footer>
   </div>
 )
