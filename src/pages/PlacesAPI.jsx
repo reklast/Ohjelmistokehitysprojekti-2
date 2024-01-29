@@ -4,7 +4,7 @@ const PlacesApi = () => {
   const [data, setData] = useState(null);
 
   const fetchData = async () => {
-    const endpoint = 'https://api.hel.fi/linkedevents/v1/search/?type=place&input=ateneum';
+    const endpoint = 'https://api.hel.fi/linkedevents/v1/search/?type=place&input=historic';
 
     try {
       const response = await fetch(endpoint);
