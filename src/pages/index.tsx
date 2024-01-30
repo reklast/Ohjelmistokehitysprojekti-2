@@ -94,9 +94,7 @@ const Home = () => {
         <div className="text-primary">
           <Leaf size={AppConfig.ui.mapIconSize} className="mt-2" />
         </div>
-        <div>
-          <FinApi />
-        </div>
+
         <div>
           <PlacesAPI />
         </div>

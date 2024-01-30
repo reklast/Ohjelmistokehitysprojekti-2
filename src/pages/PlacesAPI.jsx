@@ -4,7 +4,7 @@ const PlacesApi = () => {
   const [data, setData] = useState(null);
 
   const fetchData = async () => {
-    const endpoint = 'https://api.hel.fi/linkedevents/v1/search/?type=place&input=historic';
+    const endpoint = 'https://www.hel.fi/palvelukarttaws/rest/v4/unit/?search=history';
 
     try {
       const response = await fetch(endpoint);
@@ -22,16 +22,22 @@ const PlacesApi = () => {
 
   useEffect(() => {
     fetchData();
-  }, []); // Empty dependency array ensures useEffect runs only once, similar to componentDidMount
+  }, []); 
 
   return (
     <div>
       <h1>Places API Data</h1>
-      {data && (
-        <pre>{JSON.stringify(data, null, 2)}</pre>
-      )}
+      {data && data.map(item => (
+        <div key={item.id}>
+          <h2>{item.name}</h2>
+          <p>{item.desc_fi}</p>
+          <p>Latitude: {item.latitude}</p>
+          <p>Longitude: {item.longitude}</p>
+        </div>
+      ))}
     </div>
   );
 };
 
 export default PlacesApi;
+
