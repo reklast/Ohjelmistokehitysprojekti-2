@@ -26,7 +26,7 @@ const EventsAPI = () => {
 
   return (
     <div>
-      <h1>Places API Data</h1>
+      <h1>Evets API Data</h1>
       {Array.isArray(data) && data.map(item => (
         <div key={item.id}>
           <h2>{item.name.fi}</h2>
