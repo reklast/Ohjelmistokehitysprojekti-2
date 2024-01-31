@@ -5,6 +5,7 @@ import React, { useState } from 'react'
 
 import FinApi from '@pages/FinApi'
 import PlacesAPI from '@pages/PlacesAPI'
+import EventsAPI from '@pages/EventsAPI'
 
 import NavMenu from '@components/common/NavMenu'
 
@@ -81,6 +82,9 @@ const Home = () => {
           <NavMenu />
         </div>
       </section>
+      <div>
+        <EventsAPI/>
+      </div>
       <footer className="mt-16 flex justify-between p-3 rounded bg-light text-sm">
         <div>
           2023, some rights reserved <br />
