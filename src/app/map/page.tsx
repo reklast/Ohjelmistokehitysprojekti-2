@@ -1,7 +1,6 @@
 import Head from 'next/head'
 
 import Map from '@components/Map'
-import CarouselComponent from '@components/CarouselComponent/CarouselComponent'
 
 const MapPage = () => (
   <div>
