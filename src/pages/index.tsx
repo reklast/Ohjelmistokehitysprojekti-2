@@ -13,7 +13,7 @@ import { AppConfig } from '@lib/AppConfig'
 
 const Home = () => {
   const [fetchData, setFetchData] = useState(false)
-
+  const [data, setData] = useState(null);
   const handleButtonClick = () => {
     setFetchData(true)
   }
@@ -83,7 +83,7 @@ const Home = () => {
         </div>
       </section>
       <div>
-        <EventsAPI/>
+        <FinApi />
       </div>
       <footer className="mt-16 flex justify-between p-3 rounded bg-light text-sm">
         <div>
@@ -100,7 +100,7 @@ const Home = () => {
         </div>
 
         <div>
-          <PlacesAPI />
+          <PlacesAPI data={data} setData={setData} />
         </div>
       </footer>
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
-const PlacesApi = () => {
-  const [data, setData] = useState(null);
+const PlacesApi = ({data, setData}) => {
+  
 
   const fetchData = async () => {
     const endpoint = 'https://www.hel.fi/palvelukarttaws/rest/v4/unit/?search=history';
