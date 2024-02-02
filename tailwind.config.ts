@@ -1,4 +1,6 @@
 import type { Config } from "tailwindcss";
+import colors from "tailwindcss/colors";
+import { fontFamily } from "tailwindcss/defaultTheme";
 
 const config: Config = {
   content: [
@@ -7,11 +9,22 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    colors: {
+      transparent: "transparent",
+      current: "currentColor",
+      primary: colors.sky[700],
+      secondary: colors.slate[600],
+      dark: colors.slate[900],
+      light: colors.slate[200],
+      white: colors.slate[50],
+      error: colors.red[700],
+    },
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      fontSize: {
+        base: ["18px", "24px"],
+      },
+      fontFamily: {
+        sans: ["var(--font-catamaran)", ...fontFamily.sans],
       },
     },
   },
