@@ -30,7 +30,7 @@ const EventsAPI = () => {
       {Array.isArray(data) &&
         data.map(item => (
           <div key={item.id}>
-            <h2>{item.name.fi}</h2>
+            <h2>{item.name}</h2>
             <p>{item.description.fi}</p>
           </div>
         ))}

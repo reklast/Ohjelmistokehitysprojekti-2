@@ -1,6 +1,7 @@
 import { LatLngExpression } from 'leaflet'
 
 import { Category } from './MarkerCategories'
+import {getPlacesAPIData} from "@pages/api/placesAPI"
 
 export interface PlaceValues {
   position: LatLngExpression
@@ -8,6 +9,10 @@ export interface PlaceValues {
 }
 export type PlacesType = PlaceValues[]
 export type PlacesClusterType = Record<string, PlaceValues[]>
+const placesAPIData = getPlacesAPIData();
+
+
+
 
 export const Places: PlacesType = [
   {

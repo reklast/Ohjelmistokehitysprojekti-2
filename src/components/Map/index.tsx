@@ -2,6 +2,8 @@ import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
 
+
+
 import MapTopBar from '@components/TopBar'
 
 import { AppConfig } from '@lib/AppConfig'
