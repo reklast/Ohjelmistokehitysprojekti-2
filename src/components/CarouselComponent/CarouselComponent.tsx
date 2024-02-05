@@ -1,12 +1,11 @@
 'use client'
 
 import { Carousel, CustomFlowbiteTheme } from 'flowbite-react'
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement } from 'react'
 import { use } from 'react'
 
 import { IPlace } from '@src/@types/places'
 import placesFetch from '@src/helpers/placesFetch'
-
 import { VALIDATE_NO_SPACE_URL } from '@src/helpers/regexp'
 
 function CarouselComponent() {
@@ -20,6 +19,7 @@ function CarouselComponent() {
     },
   }
 
+  // determine number of slides based on the user window size
   const slidesNum = () => {
     if (screenWidth > 1500) return 5
     if (screenWidth < 1500) {
@@ -31,11 +31,13 @@ function CarouselComponent() {
       return 4
     }
   }
- // slides sorting
- let dataArr: Array<Array<ReactElement>> = []
+  // slides sorting
+  let dataArr: Array<Array<ReactElement>> = []
 
- // filter for values with present picture
- places = places.filter((place: IPlace) => place.picture_url && place.picture_url.trim().match(VALIDATE_NO_SPACE_URL))
+  // filter for values with present picture
+  places = places.filter(
+    (place: IPlace) => place.picture_url && place.picture_url.trim().match(VALIDATE_NO_SPACE_URL),
+  )
 
   let k = slidesNum()!
   for (let i = 0; i < places.length; i += slidesNum()!) {
@@ -44,16 +46,16 @@ function CarouselComponent() {
 
     const dataPack = currentArr.map((place: IPlace) => {
       return (
-          <div key={place.id} className="flex hover:scale-105 transition w-[20rem] h-52">
-            <div
-              style={{ backgroundImage: `url(${place.picture_url})` }}
-              className="rounded-2xl  h-[inherit] w-[inherit] bg-cover bg-top"
-            >
-              <div className='flex backdrop-brightness-50 top h-[inherit] text-white'>
-                <h1 className='text-xl mx-4 mt-4'>{place.name_fi}</h1>
-              </div>
+        <div key={place.id} className="flex hover:scale-105 transition w-[20rem] h-52">
+          <div
+            style={{ backgroundImage: `url(${place.picture_url})` }}
+            className="rounded-2xl  h-[inherit] w-[inherit] bg-cover bg-top"
+          >
+            <div className="flex backdrop-brightness-50 rounded-2xl h-[inherit] text-white">
+              <h1 className="text-xl mx-4 mt-4">{place.name_fi}</h1>
             </div>
           </div>
+        </div>
       )
     })
 
