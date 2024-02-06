@@ -1,12 +1,13 @@
+'use client'
 import dynamic from 'next/dynamic'
 import { useEffect } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
 
 import MapTopBar from '@components/TopBar'
 
-import { AppConfig } from '@lib/AppConfig'
-import MarkerCategories, { Category } from '@lib/MarkerCategories'
-import { Places } from '@lib/Places'
+import { AppConfig } from '../lib/AppConfig'
+import MarkerCategories, { Category, MarkerCategoryType } from '../lib/MarkerCategories'
+import { Places } from '../lib/Places'
 
 import MapContextProvider from './MapContextProvider'
 import useLeafletWindow from './useLeafletWindow'
@@ -97,10 +98,10 @@ const MapInner = () => {
                     color={MarkerCategories[item.category as Category].color}
                     chunkedLoading
                   >
-                    {item.markers.map(marker => (
+                    {item.markers.map((marker: any) => (
                       <CustomMarker
-                        icon={MarkerCategories[marker.category].icon}
-                        color={MarkerCategories[marker.category].color}
+                        icon={MarkerCategories[marker.category as keyof MarkerCategoryType].icon}
+                        color={MarkerCategories[marker.category as keyof MarkerCategoryType].color}
                         key={(marker.position as number[]).join('')}
                         position={marker.position}
                       />

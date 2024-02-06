@@ -2,8 +2,8 @@ import { LatLngExpression } from 'leaflet'
 import { LocateFixed } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 
-import { AppConfig } from '@lib/AppConfig'
-import MarkerCategories, { Category } from '@lib/MarkerCategories'
+import { AppConfig } from '@components/lib/AppConfig'
+import MarkerCategories, { Category } from '@components/lib/MarkerCategories'
 
 import { CustomMarker } from '../Marker'
 import useMapContext from '../useMapContext'

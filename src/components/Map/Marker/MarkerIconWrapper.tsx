@@ -2,7 +2,7 @@ import { LatLngExpression } from 'leaflet'
 import { LucideProps } from 'lucide-react'
 import { FunctionComponent, useMemo } from 'react'
 
-import { AppConfig } from '@lib/AppConfig'
+import { AppConfig } from '@components/lib/AppConfig'
 
 export interface CustomMarkerProps {
   position: LatLngExpression

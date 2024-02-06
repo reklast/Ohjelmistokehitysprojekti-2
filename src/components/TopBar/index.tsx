@@ -1,6 +1,6 @@
 import LatLngLogo from '@components/TopBar/LatLngLogo'
 
-import { NavMenuVariant } from '@lib/AppConfig'
+import { NavMenuVariant } from '@components/lib/AppConfig'
 
 import NavMenu from '../common/NavMenu'
 

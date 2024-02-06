@@ -1,6 +1,6 @@
 import { Marker } from 'react-leaflet'
 
-import { AppConfig } from '@lib/AppConfig'
+import { AppConfig } from '@components/lib/AppConfig'
 
 import LeafletDivIcon from '../LeafletDivIcon'
 import useMapContext from '../useMapContext'

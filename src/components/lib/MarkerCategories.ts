@@ -1,4 +1,4 @@
-import { Leaf, LocateFixed, LucideProps, PersonStanding } from 'lucide-react'
+import { Leaf, LocateFixed, LucideIcon, PersonStanding } from 'lucide-react'
 import { FunctionComponent } from 'react'
 import colors from 'tailwindcss/colors'
 
@@ -9,13 +9,15 @@ export enum Category {
 }
 
 export interface MarkerCategoriesValues {
+  // category: any
+  // position: number[]
   name: string
-  icon: FunctionComponent<LucideProps>
+  icon: LucideIcon
   color: string
   hideInMenu?: boolean
 }
 
-type MarkerCategoryType = {
+export type MarkerCategoryType = {
   [key in Category]: MarkerCategoriesValues
 }
 
