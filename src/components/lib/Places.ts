@@ -1,6 +1,10 @@
 import { LatLngExpression } from 'leaflet'
 
+import placesFetch from '@src/helpers/placesFetch'
+
 import { Category } from './MarkerCategories'
+
+Category.CAT1
 
 export interface PlaceValues {
   position: LatLngExpression
@@ -9,13 +13,31 @@ export interface PlaceValues {
 export type PlacesType = PlaceValues[]
 export type PlacesClusterType = Record<string, PlaceValues[]>
 
-export const Places: PlacesType = [
-  {
-    position: [60.1699, 24.9384],
-    category: Category.CAT1,
-  },
-  {
-    position: [60.1699, 24.9384],
-    category: Category.CAT2,
-  },
-]
+const fetchPlaces = async (): Promise<PlacesType> => {
+  try {
+    const data = await placesFetch()
+    console.log(data)
+
+    return data.map((place: any) => ({
+      position: [place.latitude, place.longitude],
+      category: Category.CAT1,
+    }))
+  } catch (error) {
+    console.error('Error fetching places:', error)
+    return []
+  }
+}
+
+export const loadPlaces = async (): Promise<void> => {
+  try {
+    const places = await fetchPlaces()
+    // Assign the fetched places to the Places constant
+    Object.assign(Places, places)
+  } catch (error) {
+    console.error('Error loading places:', error)
+  }
+}
+
+export const Places: PlacesType = []
+
+loadPlaces()
