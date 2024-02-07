@@ -4,6 +4,9 @@ import { Carousel, CustomFlowbiteTheme } from 'flowbite-react'
 import React, { ReactElement } from 'react'
 import { use } from 'react'
 
+import ImageWithFallback from '@components/ImageWithFallback/ImageWithFallback'
+import placeholderImage from '@src/../public/placeholderImage.jpg';
+
 import { IPlace } from '@src/@types/places'
 import placesFetch from '@src/helpers/placesFetch'
 import { VALIDATE_NO_SPACE_URL } from '@src/helpers/regexp'
@@ -47,7 +50,7 @@ function CarouselComponent() {
     const dataPack = currentArr.map((place: IPlace) => {
       return (
         <div key={place.id} className="flex hover:scale-105 transition w-[20rem] h-52">
-          <img src={place.picture_url} alt={place.id} className="w-full rounded-2xl" />
+          <ImageWithFallback src={place.picture_url} alt={place.id} fallback={placeholderImage.src} className="w-full rounded-2xl" />
           <div className="flex absolute backdrop-brightness-50 rounded-2xl h-[inherit] w-[inherit] text-white">
             <h1 className="text-xl mx-4 mt-4">{place.name_fi}</h1>
           </div>
