@@ -36,7 +36,7 @@ function CarouselComponent() {
 
   // filter for values with present picture
   places = places.filter(
-    (place: IPlace) => place.picture_url && place.picture_url.trim().match(VALIDATE_NO_SPACE_URL),
+    (place: IPlace) => place.picture_url && place.picture_url.match(VALIDATE_NO_SPACE_URL),
   )
 
   let k = slidesNum()!
@@ -47,23 +47,16 @@ function CarouselComponent() {
     const dataPack = currentArr.map((place: IPlace) => {
       return (
         <div key={place.id} className="flex hover:scale-105 transition w-[20rem] h-52">
-          <div
-            style={{ backgroundImage: `url(${place.picture_url})` }}
-            className="rounded-2xl  h-[inherit] w-[inherit] bg-cover bg-top"
-          >
-            <div className="flex backdrop-brightness-50 rounded-2xl h-[inherit] text-white">
-              <h1 className="text-xl mx-4 mt-4">{place.name_fi}</h1>
-            </div>
+          <img src={place.picture_url} alt={place.id} className="w-full rounded-2xl" />
+          <div className="flex absolute backdrop-brightness-50 rounded-2xl h-[inherit] w-[inherit] text-white">
+            <h1 className="text-xl mx-4 mt-4">{place.name_fi}</h1>
           </div>
         </div>
       )
     })
-
-    dataArr.push(dataPack)
+    // display only the amount of slides relevant to the current screen size
+    dataPack.length >= slidesNum()! && dataArr.push(dataPack)
   }
-
-  // make array divisible by number of slides, to display elements correctly
-  dataArr = dataArr.slice(0, dataArr.length - (dataArr.length % slidesNum()!))
 
   return (
     <div className="flex z-[1000] h-[30%] w-full fixed bottom-5">
