@@ -19,14 +19,9 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
 
   return (
     <ul className={`${listStyle}`}>
-      <NavMenuItem href="/" label="Intro" icon={<Home size={navIconSize} />} />
-      <NavMenuItem href="/map" label="Map Example" icon={<Compass size={navIconSize} />} />
-      <NavMenuItem
-        href="https://github.com/richard-unterberg/typescript-next-leaflet-starter"
-        label="Github"
-        icon={<Github size={navIconSize} />}
-        external
-      />
+      <NavMenuItem href="/" label="Museo" icon={<Home size={navIconSize} />} />
+      <NavMenuItem href="/map" label="Muistomerkit" icon={<Compass size={navIconSize} />} />
+      
     </ul>
   )
 }

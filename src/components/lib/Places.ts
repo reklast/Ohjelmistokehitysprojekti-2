@@ -20,7 +20,7 @@ const fetchPlaces = async (): Promise<PlacesType> => {
 
     return data.map((place: any) => ({
       position: [place.latitude, place.longitude],
-      category: Category.CAT1,
+      category: Category.CAT2,
     }))
   } catch (error) {
     console.error('Error fetching places:', error)
