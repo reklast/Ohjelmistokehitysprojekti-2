@@ -13,10 +13,7 @@ export interface CustomMarkerProps {
 
 const MarkerIconWrapper = ({ icon, color, label }: Partial<CustomMarkerProps>) => {
   const IconFC = useMemo(() => icon ?? null, [icon])
-  const handleMaarkerClick = () => {
- placesFetch()
- 
-  }
+  
 
   return (
     <div className="relative inline-flex p-0 m-0">
@@ -26,7 +23,7 @@ const MarkerIconWrapper = ({ icon, color, label }: Partial<CustomMarkerProps>) =
       <div
         className="p-2 inline-block rounded-full bg-primary text-white relative"
         style={{ backgroundColor: color }}
-        onClick={handleMaarkerClick}
+        
       >
         {IconFC && <IconFC size={AppConfig.ui.markerIconSize} />}
         {label && (
