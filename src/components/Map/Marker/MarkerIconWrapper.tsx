@@ -3,7 +3,7 @@ import { LucideProps } from 'lucide-react'
 import { FunctionComponent, useMemo } from 'react'
 
 import { AppConfig } from '@components/lib/AppConfig'
-
+import placesFetch from '@src/helpers/placesFetch'
 export interface CustomMarkerProps {
   position: LatLngExpression
   icon?: FunctionComponent<LucideProps>
@@ -13,6 +13,7 @@ export interface CustomMarkerProps {
 
 const MarkerIconWrapper = ({ icon, color, label }: Partial<CustomMarkerProps>) => {
   const IconFC = useMemo(() => icon ?? null, [icon])
+  
 
   return (
     <div className="relative inline-flex p-0 m-0">
@@ -22,6 +23,7 @@ const MarkerIconWrapper = ({ icon, color, label }: Partial<CustomMarkerProps>) =
       <div
         className="p-2 inline-block rounded-full bg-primary text-white relative"
         style={{ backgroundColor: color }}
+        
       >
         {IconFC && <IconFC size={AppConfig.ui.markerIconSize} />}
         {label && (
