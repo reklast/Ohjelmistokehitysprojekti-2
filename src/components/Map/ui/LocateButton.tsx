@@ -20,13 +20,13 @@ export const LocateButton: React.FC = () => {
     } else {
       setUserPosition(undefined)
     }
-  }, [map])
+  }, [])
 
   useEffect(() => {
     if (userPosition) {
       map?.flyTo(userPosition)
     }
-  }, [userPosition])
+  }, [map, userPosition])
 
   return (
     <>

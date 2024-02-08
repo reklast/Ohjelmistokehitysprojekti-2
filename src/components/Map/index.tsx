@@ -64,7 +64,7 @@ const MapInner = () => {
     map.setMinZoom(0)
     map.flyTo(allMarkersBoundCenter.centerPos, allMarkersBoundCenter.minZoom, { animate: false })
     map.once('moveend', moveEnd)
-  }, [allMarkersBoundCenter])
+  }, [map, allMarkersBoundCenter])
 
   return (
     <div className="h-full w-full absolute overflow-hidden" ref={viewportRef}>

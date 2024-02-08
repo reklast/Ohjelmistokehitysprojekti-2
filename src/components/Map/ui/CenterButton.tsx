@@ -25,7 +25,7 @@ export const CenterButton: React.FC<{
     if (!isTouched && map) {
       setIsTouched(true)
     }
-  }, [map])
+  }, [isTouched, map])
 
   useMapEvents({
     move() {
