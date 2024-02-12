@@ -67,7 +67,7 @@ const useMarkerData = ({ locations, map, viewportWidth, viewportHeight }: useMap
       minZoom: map.getBoundsZoom(allMarkerBounds),
       centerPos: [allMarkerBounds.getCenter().lat, allMarkerBounds.getCenter().lng],
     })
-  }, [allMarkerBounds, viewportWidth, viewportHeight])
+  }, [allMarkerBounds, viewportWidth, viewportHeight, leafletWindow, map])
 
   return { clustersByCategory, allMarkersBoundCenter }
 }
