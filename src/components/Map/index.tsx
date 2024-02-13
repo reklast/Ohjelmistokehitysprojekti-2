@@ -119,11 +119,14 @@ const MapInner = () => {
     </div>
   )
 }
-
+const DynamicCarousel = dynamic(() => import('@components/CarouselComponent/CarouselComponent'), {
+  ssr: false,
+})
 // pass through to get context in <MapInner>
 const Map = () => (
   <MapContextProvider>
     <MapInner />
+    <DynamicCarousel />
   </MapContextProvider>
 )
 
