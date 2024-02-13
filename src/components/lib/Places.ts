@@ -12,18 +12,20 @@ export type PlacesClusterType = Record<string, PlaceValues[]>
 const fetchPlaces = async (label: string): Promise<PlacesType> => {
   console.log(label)
   try {
-    const data = await placesFetch(label); 
+    const data = await placesFetch("museo"); 
     console.log(data);
     
 
     return data.map((place: any) => ({
       position: [place.latitude, place.longitude],
       category: Category.CAT2, 
-    }));
+    }
+    ));
   } catch (error) {
     console.error('Error fetching places:', error);
     return [];
   }
+  
 }
 
 export const loadPlaces = async (): Promise<void> => {

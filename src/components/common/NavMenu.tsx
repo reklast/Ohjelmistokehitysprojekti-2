@@ -19,8 +19,9 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
 
   return (
     <ul className={`${listStyle}`}>
-      <NavMenuItem href="/" label="Museo" icon={<Home size={navIconSize} />} />
+      <NavMenuItem href="/map" label="Museo" icon={<Home size={navIconSize} />} />
       <NavMenuItem href="/map" label="Muistomerkit" icon={<Compass size={navIconSize} />} />
+      <NavMenuItem href="/map" label="Historiallinen rakennus" icon={<Compass size={navIconSize} />} />
       
     </ul>
   )

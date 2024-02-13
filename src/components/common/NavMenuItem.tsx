@@ -15,7 +15,7 @@ interface NavMenuItemProps {
 
 const NavMenuItem = ({ icon, href, external = false, label }: NavMenuItemProps) => {
   const router = useRouter()
-
+console.log(label)
   const handleClick = async () => {
     try {
       await fetchPlaces(label);

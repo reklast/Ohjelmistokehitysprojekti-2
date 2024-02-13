@@ -10,7 +10,7 @@ import { VALIDATE_NO_SPACE_URL } from '@src/helpers/regexp'
 
 function CarouselComponent() {
   const screenWidth: number = window.innerWidth
-  let places = use(placesFetch())
+  let places = use(placesFetch("muistomerkki"))
 
   // custom styling of carousel control buttons
   const customTheme: CustomFlowbiteTheme['carousel'] = {
