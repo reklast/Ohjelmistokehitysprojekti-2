@@ -3,18 +3,19 @@
 import { Carousel, CustomFlowbiteTheme } from 'flowbite-react'
 import React, { ReactElement } from 'react'
 import { use } from 'react'
-
 import ImageWithFallback from '@components/ImageWithFallback/ImageWithFallback'
 import placeholderImage from '@src/../public/placeholderImage.jpg';
 
 import { IPlace } from '@src/@types/places'
 import placesFetch from '@src/helpers/placesFetch'
 import { VALIDATE_NO_SPACE_URL } from '@src/helpers/regexp'
+import useMapContext from '@components/Map/useMapContext'
 
 function CarouselComponent() {
+  const { centerCard } = useMapContext();
   const screenWidth: number = window.innerWidth
   let places = use(placesFetch())
-
+  
   // custom styling of carousel control buttons
   const customTheme: CustomFlowbiteTheme['carousel'] = {
     control: {
@@ -49,10 +50,11 @@ function CarouselComponent() {
 
     const dataPack = currentArr.map((place: IPlace) => {
       return (
-        <div key={place.id} className="flex hover:scale-105 transition w-[20rem] h-52">
+        <div key={place.id} onClick={handleCardClick(place.latitude, place.longitude)} className="flex hover:scale-105 transition w-[20rem] h-52">
           <ImageWithFallback src={place.picture_url} alt={place.id} fallback={placeholderImage.src} className="w-full rounded-2xl" />
           <div className="flex absolute backdrop-brightness-50 rounded-2xl h-[inherit] w-[inherit] text-white">
             <h1 className="text-xl mx-4 mt-4">{place.name_fi}</h1>
+            <h2 className="text-xs">{place.short_desc_fi}</h2>
           </div>
         </div>
       )
@@ -61,7 +63,31 @@ function CarouselComponent() {
     dataPack.length >= slidesNum()! && dataArr.push(dataPack)
   }
 
+  function handleCardClick(latitude: string, longitude: string) {
+    return function() {
+      // Here, perform the action you need with the latitude and longitude
+      console.log("Latitude:", latitude, "Longitude:", longitude);
+      
+      const lat = Number(latitude);
+      const lng = Number(longitude);
+      const zoomLevel = 12;
+      console.log("Latitude:", lat, "Longitude:", lng)
+      if (!isNaN(lat) && !isNaN(lng)) {
+        console.log(lat+","+lng)
+        centerCard(lat, lng, zoomLevel);
+        console.log(centerCard);
+        console.log("success");
+      } else {
+        console.error("Invalid latitude or longitude values");
+      
+      }
+    };
+  }
+
+
+
   return (
+    
     <div className="flex z-[1000] h-[30%] w-full fixed bottom-5">
       <Carousel slide={false} indicators={false} draggable={false} theme={customTheme}>
         {dataArr.map((dataPack, i) => (
