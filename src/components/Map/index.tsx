@@ -1,14 +1,14 @@
 'use client'
+
 import dynamic from 'next/dynamic'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
 
 import MapTopBar from '@components/TopBar'
 
 import { AppConfig } from '../lib/AppConfig'
 import MarkerCategories, { Category, MarkerCategoryType } from '../lib/MarkerCategories'
-import { Places } from '../lib/Places'
-
+import placeMarkers from '../lib/Places'
 import MapContextProvider from './MapContextProvider'
 import useLeafletWindow from './useLeafletWindow'
 import useMapContext from './useMapContext'
@@ -33,6 +33,13 @@ const LeafletMapContainer = dynamic(async () => (await import('./LeafletMapConta
 const MapInner = () => {
   const { map } = useMapContext()
   const leafletWindow = useLeafletWindow()
+  const [places, setPlaces]: any = useState() // define right type if we have time
+
+  // assigning a value from the promise to state right at the start, 
+  // to prevent passing an empty value to "locations" key of marker object
+   if (places == undefined) {
+    placeMarkers().then(value => setPlaces(value))
+  }
 
   const {
     width: viewportWidth,
@@ -44,13 +51,13 @@ const MapInner = () => {
   })
 
   const { clustersByCategory, allMarkersBoundCenter } = useMarkerData({
-    locations: Places,
+    locations: places,
     map,
     viewportWidth,
     viewportHeight,
   })
 
-  const isLoading = !map || !leafletWindow || !viewportWidth || !viewportHeight
+  const isLoading = !map || !leafletWindow || !viewportWidth || !viewportHeight 
 
   /** watch position & zoom of all markers */
   useEffect(() => {
@@ -102,7 +109,7 @@ const MapInner = () => {
                       <CustomMarker
                         icon={MarkerCategories[marker.category as keyof MarkerCategoryType].icon}
                         color={MarkerCategories[marker.category as keyof MarkerCategoryType].color}
-                        key={(marker.position as number[]).join('')}
+                        key={marker.id}
                         position={marker.position}
                       />
                     ))}
