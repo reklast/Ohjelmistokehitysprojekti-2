@@ -57,7 +57,7 @@ const MapInner = () => {
     viewportHeight,
   })
 
-  const isLoading = !map || !leafletWindow || !viewportWidth || !viewportHeight 
+  const isLoading = !map || !leafletWindow || !viewportWidth || !viewportHeight
 
   /** watch position & zoom of all markers */
   useEffect(() => {

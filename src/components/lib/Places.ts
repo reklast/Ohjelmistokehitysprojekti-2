@@ -17,7 +17,7 @@ export type PlacesClusterType = Record<string, PlaceValues[]>
 const fetchPlaces = async (): Promise<PlacesType> => {
     const data = await placesFetch()
 
-    return await data.map((place: any) => ({
+    return data.map((place: any) => ({
       position: [place.latitude, place.longitude],
       category: Category.CAT2,
       id: place.id
