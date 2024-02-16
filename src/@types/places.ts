@@ -9,8 +9,8 @@ interface IPlace {
     desc_fi: string;
     short_desc_fi: string;
     email: string;
-    latitude: string;
-    longitude: string;
+    latitude: number;
+    longitude: number;
     name_fi: string;
     street_address_fi: string;
     www_fi: string;

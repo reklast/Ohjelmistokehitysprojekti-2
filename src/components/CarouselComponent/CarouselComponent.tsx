@@ -5,14 +5,17 @@ import React, { ReactElement } from 'react'
 import { use } from 'react'
 import ImageWithFallback from '@components/ImageWithFallback/ImageWithFallback'
 import placeholderImage from '@src/../public/placeholderImage.jpg';
-
-import { IPlace } from '@src/@types/places'
-import placesFetch from '@src/helpers/placesFetch'
-import { VALIDATE_NO_SPACE_URL } from '@src/helpers/regexp'
 import useMapContext from '@components/Map/useMapContext'
 
+import { IPlace } from '@src/@types/places'
+import { LatLngExpression } from 'leaflet'
+
+import placesFetch from '@src/helpers/placesFetch'
+import { VALIDATE_NO_SPACE_URL } from '@src/helpers/regexp'
+
+
 function CarouselComponent() {
-  const { centerCard } = useMapContext();
+  const { map } = useMapContext();
   const screenWidth: number = window.innerWidth
   let places = use(placesFetch())
   
@@ -21,6 +24,10 @@ function CarouselComponent() {
     control: {
       base: 'inline-flex h-8 w-8 items-center justify-center rounded-full bg-dark group-hover:bg-dark/50 group-focus:outline-none group-focus:ring-4 group-focus:ring-white dark:bg-gray-800/30 dark:group-hover:bg-gray-800/60 dark:group-focus:ring-gray-800/70 sm:h-10 sm:w-10',
     },
+  }
+
+  const handleCardClick = (location: LatLngExpression) => {
+    map?.flyTo(location, 12)
   }
 
   // determine number of slides based on the user window size
@@ -50,7 +57,7 @@ function CarouselComponent() {
 
     const dataPack = currentArr.map((place: IPlace) => {
       return (
-        <div key={place.id} onClick={handleCardClick(place.latitude, place.longitude)} className="flex hover:scale-105 transition w-[20rem] h-52">
+        <div key={place.id} onClick={() => handleCardClick([place.latitude, place.longitude])} className="flex hover:scale-105 transition w-[20rem] h-52">
           <ImageWithFallback src={place.picture_url} alt={place.id} fallback={placeholderImage.src} className="w-full rounded-2xl" />
           <div className="flex absolute backdrop-brightness-50 rounded-2xl h-[inherit] w-[inherit] text-white">
             <h1 className="text-xl mx-4 mt-4">{place.name_fi}</h1>
@@ -62,29 +69,6 @@ function CarouselComponent() {
     // display only the amount of slides relevant to the current screen size
     dataPack.length >= slidesNum()! && dataArr.push(dataPack)
   }
-
-  function handleCardClick(latitude: string, longitude: string) {
-    return function() {
-      // Here, perform the action you need with the latitude and longitude
-      console.log("Latitude:", latitude, "Longitude:", longitude);
-      
-      const lat = Number(latitude);
-      const lng = Number(longitude);
-      const zoomLevel = 12;
-      console.log("Latitude:", lat, "Longitude:", lng)
-      if (!isNaN(lat) && !isNaN(lng)) {
-        console.log(lat+","+lng)
-        centerCard(lat, lng, zoomLevel);
-        console.log(centerCard);
-        console.log("success");
-      } else {
-        console.error("Invalid latitude or longitude values");
-      
-      }
-    };
-  }
-
-
 
   return (
     
