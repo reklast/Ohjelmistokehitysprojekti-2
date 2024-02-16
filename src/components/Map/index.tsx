@@ -35,10 +35,12 @@ const MapInner = () => {
   const leafletWindow = useLeafletWindow()
   const [places, setPlaces]: any = useState() // define right type if we have time
 
-  // assigning a value from the promise to state right at the start, 
+  // assigning a value from the promise to state right at the start,
   // to prevent passing an empty value to "locations" key of marker object
-   if (places == undefined) {
-    placeMarkers().then(value => setPlaces(value))
+  if (places == undefined) {
+    placeMarkers()
+      .then(value => setPlaces(value))
+      .catch(e => console.log('an error occured during API data fetching:', e))
   }
 
   const {
