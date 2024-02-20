@@ -13,6 +13,7 @@ import MapContextProvider from './MapContextProvider'
 import useLeafletWindow from './useLeafletWindow'
 import useMapContext from './useMapContext'
 import useMarkerData from './useMarkerData'
+import EventsAPI from '@components/EventAPI'
 
 const LeafletCluster = dynamic(async () => (await import('./LeafletCluster')).LeafletCluster(), {
   ssr: false,
@@ -76,6 +77,8 @@ const MapInner = () => {
   }, [map, allMarkersBoundCenter])
 
   return (
+    <>
+    
     <div className="h-full w-full absolute overflow-hidden" ref={viewportRef}>
       <MapTopBar />
       <div
@@ -123,9 +126,13 @@ const MapInner = () => {
               <></>
             )}
           </LeafletMapContainer>
+         
         )}
       </div>
+      
     </div>
+    
+    </>
   )
 }
 const DynamicCarousel = dynamic(() => import('@components/CarouselComponent/CarouselComponent'), {
@@ -134,7 +141,10 @@ const DynamicCarousel = dynamic(() => import('@components/CarouselComponent/Caro
 // pass through to get context in <MapInner>
 const Map = () => (
   <MapContextProvider>
+    
     <MapInner />
+    
+
     <DynamicCarousel />
   </MapContextProvider>
 )

@@ -1,9 +1,12 @@
+
+'use client'
 import { Leaf } from 'lucide-react'
 import Head from 'next/head'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
 import NavMenu from '@components/common/NavMenu'
+import EventsAPI from '@components/EventAPI'
 
 import { AppConfig } from '@components/lib/AppConfig'
 
@@ -90,6 +93,7 @@ const Home = () => {
         </div>
 
         <div>
+          
         </div>
       </footer>
     </div>
