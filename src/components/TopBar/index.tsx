@@ -10,8 +10,8 @@ const MapTopBar = () => {
 const [display, setDisplay] = useState (false)
 const eventStyle = {
   position: 'fixed',
-  top: '10px',
-  left: '200px',
+  top: '80px',
+  left: '300px',
   width: '50%',
   padding: '10px',
   color: 'white',
@@ -27,11 +27,11 @@ const eventStyle = {
       
       <div className="flex flex-col justify-center">
         
-      <NavMenu display={display} setDisplay={setDisplay} />
+      <NavMenu variant={NavMenuVariant.TOPNAV} display={display} setDisplay={setDisplay} />
 
        
       </div>
-    </div> <div style={eventStyle}><EventsAPI display={display}/></div>
+    </div> <div  style={eventStyle}><EventsAPI display={display}/></div>
   </div></>
   )
 }

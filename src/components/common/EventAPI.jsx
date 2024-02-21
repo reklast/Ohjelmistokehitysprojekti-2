@@ -52,7 +52,7 @@ if (display)
         {data && Array.isArray(data) && data.length > 0 ? (
           data.map((item, index) => (
             <div key={index}>
-            <div style={h1Styles} dangerouslySetInnerHTML={{ __html: item.name.fi }} />
+            <div style={h1Styles.container} dangerouslySetInnerHTML={{ __html: item.name.fi }} />
               <div dangerouslySetInnerHTML={{ __html: item.description.fi }} />
             </div>
           ))
