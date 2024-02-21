@@ -6,7 +6,7 @@ import Link from 'next/link'
 import React, { useState } from 'react'
 
 import NavMenu from '@components/common/NavMenu'
-import EventsAPI from '@components/EventAPI'
+import EventsAPI from '@components/common/EventAPI'
 
 import { AppConfig } from '@components/lib/AppConfig'
 
@@ -27,6 +27,7 @@ const Home = () => {
       visually enhanced by tailwind and lucide-react icons."
         />
       </Head>
+      
       <header className="mt-10 items-top gap-4 md:flex">
         <span className="text-primary">
           <Leaf size={AppConfig.ui.bigIconSize} className="mt-2" />
@@ -74,7 +75,9 @@ const Home = () => {
         <div>
           <h3 className="text-xl my-5">Demo Content</h3>
           <NavMenu />
+          
         </div>
+        
       </section>
       <div>
       </div>

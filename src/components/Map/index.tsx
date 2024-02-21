@@ -13,8 +13,7 @@ import MapContextProvider from './MapContextProvider'
 import useLeafletWindow from './useLeafletWindow'
 import useMapContext from './useMapContext'
 import useMarkerData from './useMarkerData'
-import EventsAPI from '@components/EventAPI'
-
+import EventsAPI from '@components/common/EventAPI'
 const LeafletCluster = dynamic(async () => (await import('./LeafletCluster')).LeafletCluster(), {
   ssr: false,
 })
@@ -102,6 +101,7 @@ const MapInner = () => {
                   center={allMarkersBoundCenter.centerPos}
                   zoom={allMarkersBoundCenter.minZoom}
                 />
+                
                 <LocateButton />
                 {Object.values(clustersByCategory).map(item => (
                   <LeafletCluster
@@ -123,13 +123,14 @@ const MapInner = () => {
               </>
             ) : (
               // eslint-disable-next-line react/jsx-no-useless-fragment
-              <></>
+              <>  </>
             )}
+           
           </LeafletMapContainer>
          
         )}
       </div>
-      
+     
     </div>
     
     </>

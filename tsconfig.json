@@ -48,7 +48,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "src/components/EventAPI.jsx"  ],
+, "src/components/common/EventAPI.jsx"  ],
   "exclude": [
     "node_modules"
   ]
