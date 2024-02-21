@@ -41,23 +41,24 @@ const EventsAPI = ({display}) => {
   const h1Styles = {
     container:{
       padding: '50px',
+      fontSize: '26px',
       color: 'black'
     }
   }
 if (display)
 {  return (
     <div style={styles.container}>
-      <h1 style={{color: black, padding: 30}} >Tapahtumat</h1>
+      <h1 style={{backgroundColor: 'green',color: black, padding: 30}} >Tapahtumat</h1>
       <div style={{ maxHeight: '100%', overflowY: 'auto' }}>
         {data && Array.isArray(data) && data.length > 0 ? (
           data.map((item, index) => (
             <div key={index}>
-            <div style={h1Styles.container} dangerouslySetInnerHTML={{ __html: item.name.fi }} />
+            <h1 style={h1Styles.container} dangerouslySetInnerHTML={{ __html: item.name.fi }} />
               <div dangerouslySetInnerHTML={{ __html: item.description.fi }} />
             </div>
           ))
         ) : (
-          <p>No events found</p>
+          <p>Ladataan</p>
         )}
       </div>
     </div>
