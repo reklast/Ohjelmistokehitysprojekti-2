@@ -29,6 +29,7 @@ const EventsAPI = ({ display }) => {
     container: {
       backgroundColor: 'green',
       border: '1px solid black',
+      borderRadius: '10px',
       paddingTop: '25px',
       padding: '10px',
       height: '60vh',
