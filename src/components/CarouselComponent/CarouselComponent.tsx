@@ -27,7 +27,7 @@ function CarouselComponent() {
   }
 
   const handleCardClick = (location: LatLngExpression) => {
-    map?.flyTo(location, 12)
+    map?.flyTo(location, 18)
   }
 
   // determine number of slides based on the user window size
