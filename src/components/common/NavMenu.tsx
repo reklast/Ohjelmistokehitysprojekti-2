@@ -3,6 +3,7 @@ import { Compass, Github, Home } from 'lucide-react'
 import { AppConfig, NavMenuVariant } from '@components/lib/AppConfig'
 
 import NavMenuItem from './NavMenuItem'
+import AuthButton from './AuthButton'
 
 interface NavMenuProps {
   variant?: NavMenuVariant
@@ -22,6 +23,7 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
       <NavMenuItem label="Museo" icon={<Compass size={navIconSize} />} />
       <NavMenuItem label="Muistomerkki" icon={<Compass size={navIconSize} />} />
       <NavMenuItem label="Teatteri" icon={<Compass size={navIconSize} />} />
+      <AuthButton />
     </ul>
   )
 }
