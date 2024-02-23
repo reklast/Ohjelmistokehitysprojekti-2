@@ -15,9 +15,9 @@ import { VALIDATE_NO_SPACE_URL } from '@src/helpers/regexp'
 
 
 function CarouselComponent() {
-  const { map } = useMapContext();
-  const screenWidth: number = window.innerWidth
-  let places = use(placesFetch())
+  const { map, category } = useMapContext();
+    const screenWidth: number = window.innerWidth
+    let places = use(placesFetch(category))
   
   // custom styling of carousel control buttons
   const customTheme: CustomFlowbiteTheme['carousel'] = {
@@ -27,7 +27,7 @@ function CarouselComponent() {
   }
 
   const handleCardClick = (location: LatLngExpression) => {
-    map?.flyTo(location, 12)
+    map?.flyTo(location, 18)
   }
 
   // determine number of slides based on the user window size

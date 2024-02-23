@@ -31,18 +31,17 @@ const LeafletMapContainer = dynamic(async () => (await import('./LeafletMapConta
 })
 
 const MapInner = () => {
-  const { map } = useMapContext()
+  const { map, category } = useMapContext()
   const leafletWindow = useLeafletWindow()
   const [places, setPlaces]: any = useState() // define right type if we have time
 
   // assigning a value from the promise to state right at the start,
   // to prevent passing an empty value to "locations" key of marker object
-  if (places == undefined) {
-    placeMarkers()
+  useEffect(()=> {
+    placeMarkers(category)
       .then(value => setPlaces(value))
       .catch(e => console.log('an error occured during API data fetching:', e))
-  }
-
+    }, [category])
   const {
     width: viewportWidth,
     height: viewportHeight,

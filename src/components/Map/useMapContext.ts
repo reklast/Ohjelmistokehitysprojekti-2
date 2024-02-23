@@ -6,8 +6,9 @@ const useMapContext = () => {
   const mapInstance = useContext(MapContext)
   const map = mapInstance?.map
   const setMap = mapInstance?.setMap
-
-  return { map, setMap }
+  const category = mapInstance?.category
+  const setCategory = mapInstance?.setCategory
+  return { map, setMap, category, setCategory }
 }
 
 export default useMapContext
