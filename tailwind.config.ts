@@ -21,6 +21,9 @@ const config: Config = {
       error: colors.red[700],
     },
     extend: {
+      backgroundImage: {
+        'login-bg': "url('../../public/map-pattern.jpg')",
+      },
       fontSize: {
         base: ["18px", "24px"],
       },
