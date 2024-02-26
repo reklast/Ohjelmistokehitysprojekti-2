@@ -33,15 +33,23 @@ const LeafletMapContainer = dynamic(async () => (await import('./LeafletMapConta
 const MapInner = () => {
   const { map, category } = useMapContext()
   const leafletWindow = useLeafletWindow()
-  const [places, setPlaces]: any = useState() // define right type if we have time
+  const [places, setPlaces]: any = useState([]) // define right type if we have time
+  const [isDataLoading, setIsDataLoading] = useState(false);
 
   // assigning a value from the promise to state right at the start,
   // to prevent passing an empty value to "locations" key of marker object
   useEffect(()=> {
+    setIsDataLoading(true);
     placeMarkers(category)
-      .then(value => setPlaces(value))
-      .catch(e => console.log('an error occured during API data fetching:', e))
-    }, [category])
+    .then(value => {
+      setPlaces(value);
+      setIsDataLoading(false); // Data fetching completes, set loading false
+      })
+      .catch(e => {
+        console.log('an error occured during API data fetching:', e);
+        setIsDataLoading(false); // On error, also set loading false
+      });
+    }, [category]);
   
   const {
     width: viewportWidth,
@@ -59,7 +67,7 @@ const MapInner = () => {
     viewportHeight,
   })
 
-  const isLoading = !map || !leafletWindow || !viewportWidth || !viewportHeight
+  const isLoading = !map || !leafletWindow || !viewportWidth || !viewportHeight || isDataLoading;
 
   /** watch position & zoom of all markers */
   useEffect(() => {
