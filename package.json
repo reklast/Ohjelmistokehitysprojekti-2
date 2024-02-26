@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "engines": {
-    "node": "21.6.2"
+    "node": "20.11.0"
   },
   "dependencies": {
     "@react-leaflet/core": "^2.1.0",

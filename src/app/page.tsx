@@ -70,7 +70,7 @@ const Home = () => {
       <section className="grid grid-cols-1 md:grid-cols-2">
         <div>
           <h3 className="text-xl my-5">Demo Content</h3>
-          <NavMenu {} />
+          <NavMenu/>
         </div>
       </section>
       <div>
