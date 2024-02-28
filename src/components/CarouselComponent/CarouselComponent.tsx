@@ -84,7 +84,7 @@ function CarouselComponent() {
   return (
     <Suspense fallback={<div>Loading places...</div>}>
       <div className="flex z-[1000] h-[30%] w-full fixed bottom-5">
-        <Carousel slide={false} indicators={true} draggable={true} theme={customTheme}>
+        <Carousel slide={false} indicators={false} draggable={true} theme={customTheme}>
           {slides}
         </Carousel>
       </div>
