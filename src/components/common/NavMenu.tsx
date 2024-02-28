@@ -25,15 +25,17 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO,  }: NavMenuProps) => {
       : `flex flex-col justify-between gap-1 w-fit text-primary`
 
   return (
+    <>
     <ul className={`${listStyle}`}>
-      <Weather/>
+      
       <NavMenuItem label="Museo" icon={<Compass size={navIconSize} />} />
       <NavMenuItem label="Muistomerkki" icon={<Compass size={navIconSize} />} />
       <NavMenuItem label="Teatteri" icon={<Compass size={navIconSize} />} />
       <EventsButton display={display} setDisplay={setDisplay}/>
       <EventAPI display={display}/>
-      <AuthButton />
+      <AuthButton /><Weather/>
     </ul>
+    </>
   )
 }
 

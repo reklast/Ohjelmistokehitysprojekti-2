@@ -7,6 +7,14 @@ const WeatherComponent = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  const weatherStyles = {
+    container: {
+        position:'fixed',
+        top:0,
+        left:800,
+      
+    },
+  }
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
@@ -42,7 +50,7 @@ const WeatherComponent = () => {
   }
 
   return (
-    <div>
+    <div style={weatherStyles.container}>
     
       <p>Temperature: {weatherData.current.temp_c} °C</p>
       

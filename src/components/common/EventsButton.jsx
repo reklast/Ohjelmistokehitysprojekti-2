@@ -7,7 +7,7 @@ const EventsButton = ({ setDisplay, display }) => {
     };
   
     return (
-      <button onClick={handleClick}>
+      <button className="underline underline-offset-1" onClick={handleClick}>
         Events
       </button>
     );
