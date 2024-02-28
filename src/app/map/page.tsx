@@ -8,16 +8,15 @@ import Map from '@components/Map'
 const MapPage = () => (
   <div>
     <Head>
-      <title>Map Example | Jumpstart your new leaflet mapping Project with next.js and typescript 🤩</title>
+      <title>Helsinki Area Sights App</title>
       <meta
         property="og:title"
-        content="Map Example | Jumpstart your new leaflet mapping Project with next.js and typescript 🤩"
+        content="This is Helsinki Guide to seeing the sights and places to see in Helsinki Metropolitan area."
         key="title"
       />
       <meta
         name="description"
-        content="next-leaflet-starter-typescript is an extensible next.js starter template for the leaflet-maps-react plugin. Written in typescript,
-      visually enhanced by tailwind and lucide-react icons."
+        content="Click through the Helsinki sights with ease with our App."
       />
     </Head>
 
