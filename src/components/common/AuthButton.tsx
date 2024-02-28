@@ -6,7 +6,7 @@ function AuthButton() {
   return (
     <>
       {useSession()?.data ? (
-        <Link href="#" onClick={() => signOut({ callbackUrl: '/' })}>
+        <Link href="#" onClick={() => signOut({ callbackUrl: '/map' })}>
           Sign Out
         </Link>
       ) : (

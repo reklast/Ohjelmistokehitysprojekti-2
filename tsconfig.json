@@ -48,7 +48,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/app/del-page"  ],
   "exclude": [
     "node_modules"
   ]

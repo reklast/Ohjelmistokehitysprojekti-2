@@ -1,7 +1,7 @@
 'use client'
 
 import { Carousel, CustomFlowbiteTheme } from 'flowbite-react'
-import React, { ReactElement } from 'react'
+import React, { ReactElement, Suspense, useState, useEffect } from 'react'
 import { use } from 'react'
 import ImageWithFallback from '@components/ImageWithFallback/ImageWithFallback'
 import placeholderImage from '@src/../public/placeholderImage.jpg';
@@ -16,8 +16,8 @@ import { VALIDATE_NO_SPACE_URL } from '@src/helpers/regexp'
 
 function CarouselComponent() {
   const { map, category } = useMapContext();
-  const screenWidth: number = window.innerWidth
-  let places = use(placesFetch(category))
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  
   
   // custom styling of carousel control buttons
   const customTheme: CustomFlowbiteTheme['carousel'] = {
@@ -31,59 +31,66 @@ function CarouselComponent() {
   }
 
   // determine number of slides based on the user window size
-  const slidesNum = () => {
-    if (screenWidth > 1500) return 5
-    if (screenWidth < 1500) {
-      if (screenWidth < 800) return 1
-
-      if (screenWidth < 1015) return 2
-
-      if (screenWidth < 1350) return 3
-      return 4
+  const slidesNum = (): number => {
+    if (screenWidth > 1600) {
+      return 5;
+    } else if (screenWidth >= 1400) {
+      return 4;
+    } else if (screenWidth >= 800) {
+      return 2;
+    } else {
+      return 3;
     }
-  }
-  // slides sorting
-  let dataArr: Array<Array<ReactElement>> = []
+  };
+  
 
+   // Listen for window resize to adjust slidesNum dynamically
+   useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const placesPromise = placesFetch(category).then(fetchedPlaces =>
+    fetchedPlaces.filter((place: IPlace) =>
+      place.picture_url && VALIDATE_NO_SPACE_URL.test(place.picture_url)
+    )
+  );
   // filter for values with present picture
-  places = places.filter(
-    (place: IPlace) => place.picture_url && place.picture_url.match(VALIDATE_NO_SPACE_URL),
-  )
+  const places = use(placesPromise);
 
-  let k = slidesNum()!
-  for (let i = 0; i < places.length; i += slidesNum()!) {
-    const currentArr = places.slice(i, k)
-    k += slidesNum()!
-
-    const dataPack = currentArr.map((place: IPlace) => {
-      return (
-        <div key={place.id} onClick={() => handleCardClick([place.latitude, place.longitude])} className="flex hover:scale-105 transition w-[20rem] h-52">
-          <ImageWithFallback src={place.picture_url} alt={place.id} fallback={placeholderImage.src} className="w-full rounded-2xl" />
-          <div className="flex absolute backdrop-brightness-50 rounded-2xl h-[inherit] w-[inherit] text-white">
-            <h1 className="text-xl mx-4 mt-4">{place.name_fi}</h1>
-            <h2 className="text-xs">{place.short_desc_fi}</h2>
-          </div>
+  let slides: Array<ReactElement> = [];
+  const numSlides = slidesNum(); // Call once and store the result
+  for (let i = 0; i < places.length; i += numSlides) {
+    const slice = places.slice(i, i + numSlides);
+    const slide = slice.map((place: IPlace) => (
+      <div key={i} className="flex justify-center">
+        <div className="flex justify-evenly items-center w-full">
+          {slice.map((place: IPlace) => (
+            <div key={place.id} onClick={() => handleCardClick([place.latitude, place.longitude])} className="flex hover:scale-105 transition w-[20rem] h-52">
+              <ImageWithFallback src={place.picture_url} alt={place.id} fallback={placeholderImage.src} className="w-full rounded-2xl" />
+              <div className="flex absolute backdrop-brightness-50 rounded-2xl h-[inherit] w-[inherit] text-white">
+                <h1 className="text-xl mx-4 mt-4">{place.name_fi}</h1>
+                <h2 className="text-xs">{place.short_desc_fi}</h2>
+              </div>
+            </div>
+          ))}
         </div>
-      )
-    })
-    // display only the amount of slides relevant to the current screen size
-    dataPack.length >= slidesNum()! && dataArr.push(dataPack)
+      </div>
+    ));
+    slides.push(slide);
   }
 
   return (
-    
-    <div className="flex z-[1000] h-[30%] w-full fixed bottom-5">
-      <Carousel slide={false} indicators={false} draggable={false} theme={customTheme}>
-        {dataArr.map((dataPack, i) => (
-          <div key={i} className="flex justify-center">
-            <div className="flex justify-evenly items-center w-full space">
-              {dataPack.map((data: any) => data)}
-            </div>
-          </div>
-        ))}
-      </Carousel>
-    </div>
-  )
+    <Suspense fallback={<div>Loading places...</div>}>
+      <div className="flex z-[1000] h-[30%] w-full fixed bottom-5">
+        <Carousel slide={false} indicators={true} draggable={true} theme={customTheme}>
+          {slides}
+        </Carousel>
+      </div>
+    </Suspense>
+  );
+
 }
 
 export default CarouselComponent
