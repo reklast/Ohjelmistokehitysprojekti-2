@@ -20,7 +20,7 @@ const WeatherComponent = () => {
       try {
         // Fetch weather data from an API
         const response = await fetch(
-          'http://api.weatherapi.com/v1/current.json?key=4f773e0aefc04debb4a104721241402&q=Helsinki&aqi=no',
+          'https://api.weatherapi.com/v1/current.json?key=4f773e0aefc04debb4a104721241402&q=Helsinki&aqi=no',
         )
         if (!response.ok) {
           throw new Error('Failed to fetch weather data')

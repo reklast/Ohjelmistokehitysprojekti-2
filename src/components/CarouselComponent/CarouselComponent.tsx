@@ -31,7 +31,7 @@ function CarouselComponent() {
   }
 
   // determine number of slides based on the user window size
-  const slidesNum = () => {
+  const slidesNum =  () => {
     if (screenWidth > 1500) return 5
     if (screenWidth < 1500) {
       if (screenWidth < 800) return 1
