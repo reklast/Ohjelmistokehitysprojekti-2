@@ -2,7 +2,6 @@ import { LatLngExpression, Map } from 'leaflet'
 import { useEffect, useMemo, useState } from 'react'
 
 import useLeafletWindow from '@components/Map/useLeafletWindow'
-
 import { AppConfig } from '@components/lib/AppConfig'
 import { PlacesClusterType, PlacesType } from '@components/lib/Places'
 
@@ -63,9 +62,11 @@ const useMarkerData = ({ locations, map, viewportWidth, viewportHeight }: useMap
 
     const el = map.invalidateSize()
     if (!el) return
-    setAllMarkersBoundCenter({
-      minZoom: map.getBoundsZoom(allMarkerBounds),
-      centerPos: [allMarkerBounds.getCenter().lat, allMarkerBounds.getCenter().lng],
+    map.addEventListener('load', () => {
+      setAllMarkersBoundCenter({
+        minZoom: map.getBoundsZoom(allMarkerBounds),
+        centerPos: [allMarkerBounds.getCenter().lat, allMarkerBounds.getCenter().lng],
+      })
     })
   }, [allMarkerBounds, viewportWidth, viewportHeight, leafletWindow, map])
 
