@@ -33,7 +33,8 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO,  }: NavMenuProps) => {
       <NavMenuItem label="Teatteri" icon={<Compass size={navIconSize} />} />
       <EventsButton display={display} setDisplay={setDisplay}/>
       <EventAPI display={display}/>
-      <AuthButton /><Weather/>
+      <AuthButton />
+      <Weather/>
     </ul>
     </>
   )

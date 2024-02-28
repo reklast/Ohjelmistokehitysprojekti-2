@@ -1,5 +1,5 @@
-
 'use client'
+
 import React, { useEffect, useState } from 'react'
 
 const WeatherComponent = () => {
@@ -9,10 +9,9 @@ const WeatherComponent = () => {
 
   const weatherStyles = {
     container: {
-        position:'fixed',
-        top:0,
-        left:800,
-      
+      position: 'fixed',
+      top: 0,
+      left: 800,
     },
   }
   useEffect(() => {
@@ -21,11 +20,12 @@ const WeatherComponent = () => {
         // Fetch weather data from an API
         const response = await fetch(
           'https://api.weatherapi.com/v1/current.json?key=4f773e0aefc04debb4a104721241402&q=Helsinki&aqi=no',
-        {
-          headers: {
-            'Access-Control-Allow-Origin': '*'
-          }
-        })
+          {
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+            },
+          },
+        )
         if (!response.ok) {
           throw new Error('Failed to fetch weather data')
         }
@@ -54,16 +54,14 @@ const WeatherComponent = () => {
   }
 
   return (
-    <div style={weatherStyles.container}>
-    
-      <p>Temperature: {weatherData.current.temp_c} °C</p>
-      
+    <div style={weatherStyles.container} className='flex items-center'>
       <WeatherIcon iconUrl={weatherData.current.condition.icon} alt={weatherData.current.condition.text} />
+      <p>Temperature: {weatherData.current.temp_c} °C</p>
     </div>
   )
 }
 
 export default WeatherComponent
 const WeatherIcon = ({ iconUrl, alt }) => {
-  return <img src={iconUrl} alt={alt} />;
-};
+  return <img src={iconUrl} alt={alt} className="mr-4" />
+}
