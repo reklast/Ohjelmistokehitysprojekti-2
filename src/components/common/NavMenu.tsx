@@ -5,6 +5,8 @@ import { AppConfig, NavMenuVariant } from '@components/lib/AppConfig'
 import NavMenuItem from './NavMenuItem'
 import AuthButton from './AuthButton'
 import EventsButton from '@components/common/EventsButton'
+import Weather from '@components/common/Weather'
+
 interface NavMenuProps {
   variant?: NavMenuVariant
   display: boolean // Add display prop to the interface
@@ -22,6 +24,7 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO, display,setDisplay }: NavMenu
 
   return (
     <ul className={`${listStyle}`}>
+      <Weather/>
       <NavMenuItem label="Museo" icon={<Compass size={navIconSize} />} />
       <NavMenuItem label="Muistomerkki" icon={<Compass size={navIconSize} />} />
       <NavMenuItem label="Teatteri" icon={<Compass size={navIconSize} />} />
