@@ -4,12 +4,14 @@ import { AppConfig, NavMenuVariant } from '@components/lib/AppConfig'
 
 import NavMenuItem from './NavMenuItem'
 import AuthButton from './AuthButton'
-
+import EventsButton from '@components/common/EventsButton'
 interface NavMenuProps {
   variant?: NavMenuVariant
+  display: boolean // Add display prop to the interface
+  setDisplay: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
+const NavMenu = ({ variant = NavMenuVariant.INTRO, display,setDisplay }: NavMenuProps) => {
   const navIconSize =
     variant === NavMenuVariant.TOPNAV ? AppConfig.ui.topBarIconSize : AppConfig.ui.menuIconSize
 
@@ -23,6 +25,7 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
       <NavMenuItem label="Museo" icon={<Compass size={navIconSize} />} />
       <NavMenuItem label="Muistomerkki" icon={<Compass size={navIconSize} />} />
       <NavMenuItem label="Teatteri" icon={<Compass size={navIconSize} />} />
+      <EventsButton display={display} setDisplay={setDisplay}/>
       <AuthButton />
     </ul>
   )
