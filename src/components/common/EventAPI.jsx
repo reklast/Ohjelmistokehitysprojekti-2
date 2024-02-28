@@ -1,3 +1,4 @@
+'use client'
 import React, { useEffect, useState } from 'react'
 import { black } from 'tailwindcss/colors'
 
@@ -27,6 +28,9 @@ const EventsAPI = ({ display }) => {
 
   const styles = {
     container: {
+        position:'fixed',
+        top:0,
+        left:250,
       backgroundColor: 'green',
       border: '1px solid black',
       borderRadius: '10px',
@@ -35,6 +39,7 @@ const EventsAPI = ({ display }) => {
       height: '60vh',
       width: '75vw',
       overflowY: 'auto',
+      marginTop: '150px',
     },
   }
   const h1Styles = {
