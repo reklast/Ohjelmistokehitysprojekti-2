@@ -1,4 +1,4 @@
-import { Leaf, LocateFixed, LucideAxe, LucideBaggageClaim, LucideBattery, LucideBeer, LucideIcon, LucideStarHalf, LucideTerminal, Music, PersonStanding} from 'lucide-react'
+import { Leaf, LocateFixed, LucideIcon,  PersonStanding} from 'lucide-react'
 import { MuseoModerno } from 'next/font/google'
 import { FunctionComponent } from 'react'
 import colors from 'tailwindcss/colors'
