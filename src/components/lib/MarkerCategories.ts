@@ -1,4 +1,4 @@
-import { Leaf, LocateFixed, LucideIcon, PersonStanding } from 'lucide-react'
+import { Leaf, LocateFixed, LucideIcon, PersonStanding, LucideAlarmClock, AlarmClock} from 'lucide-react'
 import { FunctionComponent } from 'react'
 import colors from 'tailwindcss/colors'
 
@@ -6,6 +6,7 @@ export enum Category {
   LOCATE = 0,
   CAT1 = 1,
   CAT2 = 2,
+  CAT3 = 3,
 }
 
 export interface MarkerCategoriesValues {
@@ -36,6 +37,11 @@ const MarkerCategories: MarkerCategoryType = {
   [Category.CAT2]: {
     name: 'Category 2',
     icon: PersonStanding,
+    color: colors.red[400],
+  },
+  [Category.CAT3]: {
+    name: 'Category 3',
+    icon: AlarmClock,
     color: colors.red[400],
   },
 }
