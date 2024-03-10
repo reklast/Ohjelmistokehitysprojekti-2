@@ -56,31 +56,34 @@ function CarouselComponent() {
   // filter for values with present picture
   const places = use(placesPromise)
 
-  console.log(places)
-  let slides: Array<Array<ReactElement>> = []
+  let slides: Array<ReactElement> = []
   const numSlides = slidesNum() // Call once and store the result
   for (let i = 0; i < places.length; i += numSlides) {
     const slice = places.slice(i, i + numSlides)
-
-    const slide = slice.map((place: IPlace) => (
-      <div
-        key={place.id}
-        onClick={() => handleCardClick([place.latitude, place.longitude])}
-        className="flex hover:scale-105 transition w-[20rem] h-52"
-      >
-        <ImageWithFallback
-          src={place.picture_url}
-          alt={place.id}
-          fallback={placeholderImage.src}
-          className="w-full rounded-2xl"
-        />
-        <div className="flex absolute backdrop-brightness-50 rounded-2xl h-[inherit] w-[inherit] text-white">
-          <h1 className="text-xl mx-4 mt-4">{place.name_fi}</h1>
-          <h2 className="text-xs">{place.short_desc_fi}</h2>
+    const slide = (
+      <div key={i} className="flex justify-center">
+        <div className="flex justify-evenly items-center w-full">
+          {slice.map((place: IPlace) => (
+            <div
+              key={place.id}
+              onClick={() => handleCardClick([place.latitude, place.longitude])}
+              className="flex hover:scale-105 transition w-[20rem] h-52"
+            >
+              <ImageWithFallback
+                src={place.picture_url}
+                alt={place.id}
+                fallback={placeholderImage.src}
+                className="w-full rounded-2xl"
+              />
+              <div className="flex absolute backdrop-brightness-50 rounded-2xl h-[inherit] w-[inherit] text-white">
+                <h1 className="text-xl mx-4 mt-4">{place.name_fi}</h1>
+                <h2 className="text-xs">{place.short_desc_fi}</h2>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    ))
-
+    )
     slides.push(slide)
   }
 
@@ -88,13 +91,7 @@ function CarouselComponent() {
     <Suspense fallback={<div>Loading places...</div>}>
       <div className="flex z-[1000] h-[30%] w-full fixed bottom-5">
         <Carousel slide={false} indicators={false} draggable={true} theme={customTheme}>
-          {slides.map((slidePack, i) => (
-            <div key={i} className="flex justify-center">
-              <div className="flex justify-evenly items-center w-full space">
-                {slidePack.map((data: any) => data)}
-              </div>
-            </div>
-          ))}
+          {slides}
         </Carousel>
       </div>
     </Suspense>
