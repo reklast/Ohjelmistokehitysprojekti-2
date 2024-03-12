@@ -7,7 +7,7 @@ const EventsButton = ({ setDisplay, display }) => {
     };
   
     return (
-      <button className="underline underline-offset-1" onClick={handleClick}>
+      <button className="text-base" onClick={handleClick}>
         Tapahtumat
       </button>
     );

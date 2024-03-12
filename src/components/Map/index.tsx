@@ -106,6 +106,7 @@ const MapInner = () => {
             zoom={allMarkersBoundCenter.minZoom}
             maxZoom={AppConfig.maxZoom}
             minZoom={AppConfig.minZoom}
+            zoomControl={false}
           >
             {!isLoading ? (
               <>
