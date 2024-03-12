@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 function AuthButton() {
   return (
-    <div className="flex items-center">
+    <div className="flex items-center pr-4">
       {useSession()?.data ? (
         <Link href="#" onClick={() => signOut({ callbackUrl: '/map' })}>
           <img src="/logout.svg" className="w-6" />

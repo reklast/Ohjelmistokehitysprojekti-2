@@ -30,7 +30,7 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
   return (
     <>
       <ul className={`${listStyle}`}>
-        <div className="flex items-center gap-4 lg:gap-10 w-full justify-start">
+        <div className="flex items-center gap-4 lg:gap-10 w-full justify-start px-5">
           <Dropdown label="Categories" size="xl">
             <Dropdown.Item>
               <NavMenuItem label="Museo" icon={<Compass size={navIconSize} />} />
@@ -44,7 +44,7 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
           </Dropdown>
           <EventsButton display={display} setDisplay={setDisplay} />
         </div>
-        <div className='flex items-center w-full justify-end gap-2 sm:gap-8'>
+        <div className='flex items-center w-full justify-end gap-2 sm:gap-8 px-5'>
           <EventAPI display={display} />
           <Weather />
           <AuthButton />
