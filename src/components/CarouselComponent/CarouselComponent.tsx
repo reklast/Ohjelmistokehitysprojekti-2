@@ -2,20 +2,24 @@
 
 import { Carousel, CustomFlowbiteTheme } from 'flowbite-react'
 import { LatLngExpression } from 'leaflet'
-import React, { ReactElement, Suspense, useEffect, useState } from 'react'
-import { use } from 'react'
+import React, { JSXElementConstructor, ReactElement, Suspense, useEffect, useRef, useState } from 'react'
+
+import arrowDown from '@root/public/arrow-down.svg'
+import arrowUp from '@root/public/arrow-up.svg'
 
 import ImageWithFallback from '@components/ImageWithFallback/ImageWithFallback'
 import useMapContext from '@components/Map/useMapContext'
 
 import placeholderImage from '@src/../public/placeholderImage.jpg'
 import { IPlace } from '@src/@types/places'
-import placesFetch from '@src/helpers/placesFetch'
 import { VALIDATE_NO_SPACE_URL } from '@src/helpers/regexp'
 
 function CarouselComponent() {
-  const { map, category } = useMapContext()
+  const { map, setCurrentTarget, places, sidePanel, setSidePanel } = useMapContext()
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
+  const [showCarousel, setShowCarousel] = useState<boolean>(true)
+
+  const carousel = useRef<HTMLDivElement>(null)
 
   // custom styling of carousel control buttons
   const customTheme: CustomFlowbiteTheme['carousel'] = {
@@ -24,8 +28,14 @@ function CarouselComponent() {
     },
   }
 
-  const handleCardClick = (location: LatLngExpression) => {
+  const handleCardClick = (location: LatLngExpression, place: IPlace) => {
     map?.flyTo(location, 18)
+    setCurrentTarget!(place)
+  }
+
+  const onArrowButtonClick = () => {
+    setShowCarousel(!showCarousel)
+    sidePanel && (setSidePanel!(false), setShowCarousel(true))
   }
 
   // determine number of slides based on the user window size
@@ -43,30 +53,36 @@ function CarouselComponent() {
 
   // Listen for window resize to adjust slidesNum dynamically
   useEffect(() => {
+    showCarousel
+      ? carousel.current?.style.setProperty('bottom', '0')
+      : carousel.current?.style.setProperty('bottom', '-26%')
+
+    sidePanel && setShowCarousel(false)
+
+    // (sidePanel && showCarousel) && setShowCarousel(false);
+    // !sidePanel && !showCarousel && carousel.current?.style.setProperty('bottom', '0');
+
     const handleResize = () => setScreenWidth(window.innerWidth)
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  }, [window, sidePanel, showCarousel])
 
-  const placesPromise = placesFetch(category).then(fetchedPlaces =>
-    fetchedPlaces.filter(
-      (place: IPlace) => place.picture_url && VALIDATE_NO_SPACE_URL.test(place.picture_url),
-    ),
-  )
   // filter for values with present picture
-  const places = use(placesPromise)
+  const placesWithPic = places?.filter(
+    (place: IPlace) => place.picture_url && VALIDATE_NO_SPACE_URL.test(place.picture_url),
+  )
 
   let slides: Array<ReactElement> = []
   const numSlides = slidesNum() // Call once and store the result
-  for (let i = 0; i < places.length; i += numSlides) {
-    const slice = places.slice(i, i + numSlides)
+  for (let i = 0; i < placesWithPic?.length!; i += numSlides) {
+    const slice = placesWithPic?.slice(i, i + numSlides)
     const slide = (
       <div key={i} className="flex justify-center">
         <div className="flex justify-evenly items-center w-full">
-          {slice.map((place: IPlace) => (
+          {slice?.map((place: IPlace) => (
             <div
               key={place.id}
-              onClick={() => handleCardClick([place.latitude, place.longitude])}
+              onClick={() => handleCardClick([place.latitude, place.longitude], place)}
               className="flex hover:scale-105 transition w-[20rem] h-52"
             >
               <ImageWithFallback
@@ -84,18 +100,23 @@ function CarouselComponent() {
         </div>
       </div>
     )
-    slides.push(slide)
+    slides.push(slide! as unknown as ReactElement<any, string | JSXElementConstructor<any>>)
   }
 
   return (
     <Suspense fallback={<div>Loading places...</div>}>
-      <div className="flex z-[1000] h-[30%] w-full fixed bottom-5">
-        <Carousel slide={false} indicators={false} draggable={true} theme={customTheme}>
+      <div
+        ref={carousel}
+        className="flex flex-col items-center z-[1000] h-[30%] w-full fixed bottom-0 transition-all duration-500"
+      >
+        <button onClick={() => onArrowButtonClick()} className="w-8">
+          <img src={showCarousel ? arrowDown.src : arrowUp.src} alt="arrowDown" />
+        </button>
+        <Carousel slide={false} indicators={false} draggable={false} theme={customTheme}>
           {slides}
         </Carousel>
       </div>
     </Suspense>
   )
 }
-
 export default CarouselComponent

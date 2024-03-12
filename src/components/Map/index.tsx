@@ -4,11 +4,14 @@ import dynamic from 'next/dynamic'
 import { useEffect, useState } from 'react'
 import { useResizeDetector } from 'react-resize-detector'
 
+import SidePanel from '@components/SidePanel/SidePanel'
 import MapTopBar from '@components/TopBar'
+
+import { IPlace } from '@src/@types/places'
 
 import { AppConfig } from '../lib/AppConfig'
 import MarkerCategories, { Category, MarkerCategoryType } from '../lib/MarkerCategories'
-import placeMarkers from '../lib/Places'
+import placeMarkers, { PlacesType } from '../lib/Places'
 import MapContextProvider from './MapContextProvider'
 import useLeafletWindow from './useLeafletWindow'
 import useMapContext from './useMapContext'
@@ -29,28 +32,31 @@ const LocateButton = dynamic(async () => (await import('./ui/LocateButton')).Loc
 const LeafletMapContainer = dynamic(async () => (await import('./LeafletMapContainer')).LeafletMapContainer, {
   ssr: false,
 })
+const DynamicSidePanel = dynamic(() => import('@components/SidePanel/SidePanel'), {
+  ssr: false,
+})
 
 const MapInner = () => {
-  const { map, category } = useMapContext()
+  const { map, category, sidePanel, places, setPlaces } = useMapContext()
   const leafletWindow = useLeafletWindow()
-  const [places, setPlaces]: any = useState([]) // define right type if we have time
-  const [isDataLoading, setIsDataLoading] = useState(false);
+  //const [places, setPlaces] = useState<any>([]) // define right type if we have time
+  const [isDataLoading, setIsDataLoading] = useState(false)
 
   // assigning a value from the promise to state right at the start,
   // to prevent passing an empty value to "locations" key of marker object
-  useEffect(()=> {
-    setIsDataLoading(true);
+  useEffect(() => {
+    setIsDataLoading(true)
     placeMarkers(category)
-    .then(value => {
-      setPlaces(value);
-      setIsDataLoading(false); // Data fetching completes, set loading false
+      .then((value) => {
+        setPlaces!(value);
+        setIsDataLoading(false) // Data fetching completes, set loading false
       })
       .catch(e => {
-        console.log('an error occured during API data fetching:', e);
-        setIsDataLoading(false); // On error, also set loading false
-      });
-    }, [category]);
-  
+        console.log('an error occured during API data fetching:', e)
+        setIsDataLoading(false) // On error, also set loading false
+      })
+  }, [category])
+
   const {
     width: viewportWidth,
     height: viewportHeight,
@@ -67,7 +73,7 @@ const MapInner = () => {
     viewportHeight,
   })
 
-  const isLoading = !map || !leafletWindow || !viewportWidth || !viewportHeight || isDataLoading;
+  const isLoading = !map || !leafletWindow || !viewportWidth || !viewportHeight || isDataLoading
 
   /** watch position & zoom of all markers */
   useEffect(() => {
@@ -144,6 +150,7 @@ const Map = () => (
   <MapContextProvider>
     <MapInner />
     <DynamicCarousel />
+    <DynamicSidePanel />
   </MapContextProvider>
 )
 
