@@ -18,7 +18,7 @@ const NavMenuItem = ({ icon, label }: NavMenuItemProps) => {
 
   return (
     <li className="underline underline-offset-1">
-      <button onClick={onButtonClick} className="flex items-center gap-2">
+      <button onClick={onButtonClick} className="flex text-dark items-center gap-2">
         <>
           {icon} {label}
         </>

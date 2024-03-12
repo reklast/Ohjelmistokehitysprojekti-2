@@ -46,7 +46,7 @@ function CarouselComponent() {
       return 4;
     } else if (screenWidth > 1000) {
       return 3;
-    } else if (screenWidth > 600) {
+    } else if (screenWidth > 640) {
       return 2; // Corrected to logically follow the decreasing pattern
     } else {
       return 1; // Smallest screens show the least number of slides
@@ -110,7 +110,7 @@ function CarouselComponent() {
     <Suspense fallback={<div>Loading places...</div>}>
       <div
         ref={carousel}
-        className="flex flex-col items-center z-[1000] h-[30%] w-full fixed bottom-0 transition-all duration-500"
+        className="flex flex-col items-center z-[1000] h-[40%] sm:h-[30%] w-full fixed bottom-0 transition-all duration-500"
       >
         <button onClick={() => onArrowButtonClick()} className="w-8">
           <img src={showCarousel ? arrowDown.src : arrowUp.src} alt="arrowDown" />
