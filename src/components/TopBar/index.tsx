@@ -11,7 +11,7 @@ const MapTopBar = () => (
   >
     <div className="flex justify-between w-full">
       
-      <div className="flex flex-col justify-center">
+      <div className="flex w-full flex-col justify-center">
         <NavMenu variant={NavMenuVariant.TOPNAV} />
       </div>
     </div>

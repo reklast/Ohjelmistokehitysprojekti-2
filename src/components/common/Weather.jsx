@@ -7,13 +7,6 @@ const WeatherComponent = () => {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const weatherStyles = {
-    container: {
-      position: 'fixed',
-      top: 9,
-      left: 650,
-    },
-  }
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
@@ -54,14 +47,16 @@ const WeatherComponent = () => {
   }
 
   return (
-    <div style={weatherStyles.container} className='flex items-center'>
+    <div className="flex justify-between pr-6 sm:justify-normal items-center">
       <WeatherIcon iconUrl={weatherData.current.condition.icon} alt={weatherData.current.condition.text} />
-      <p>Lämpötila: {weatherData.current.temp_c} °C</p>
+      <p className='text-center'>
+        <p className="hidden sm:block p-2">Lämpötila:</p> {weatherData.current.temp_c} °C
+      </p>
     </div>
   )
 }
 
 export default WeatherComponent
 const WeatherIcon = ({ iconUrl, alt }) => {
-  return <img src={iconUrl} alt={alt} className="mr-4" />
+  return <img className="w-12" src={iconUrl} alt={alt} />
 }
