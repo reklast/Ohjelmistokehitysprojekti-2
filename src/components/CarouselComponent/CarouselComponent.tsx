@@ -41,15 +41,18 @@ function CarouselComponent() {
   // determine number of slides based on the user window size
   const slidesNum = (): number => {
     if (screenWidth > 1600) {
-      return 5
-    } else if (screenWidth >= 1400) {
-      return 4
-    } else if (screenWidth >= 800) {
-      return 2
+      return 5;
+    } else if (screenWidth > 1400) {
+      return 4;
+    } else if (screenWidth > 1000) {
+      return 3;
+    } else if (screenWidth > 600) {
+      return 2; // Corrected to logically follow the decreasing pattern
     } else {
-      return 3
+      return 1; // Smallest screens show the least number of slides
     }
   }
+
 
   // Listen for window resize to adjust slidesNum dynamically
   useEffect(() => {
