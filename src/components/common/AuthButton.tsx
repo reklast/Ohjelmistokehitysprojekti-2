@@ -7,10 +7,10 @@ function AuthButton() {
     <>
       {useSession()?.data ? (
         <Link href="#" onClick={() => signOut({ callbackUrl: '/map' })}>
-          Sign Out
+          Kirjaudu ulos
         </Link>
       ) : (
-        <Link href="/api/auth/login">Sign In</Link>
+        <Link href="/api/auth/login">Kirjaudu sisään</Link>
       )}
     </>
   )
