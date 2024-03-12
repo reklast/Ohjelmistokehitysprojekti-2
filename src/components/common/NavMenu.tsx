@@ -44,7 +44,7 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
     <>
       <ul className={`${listStyle}`}>
         <div className="flex items-center gap-4 lg:gap-10 w-full justify-start px-5">
-          <Dropdown label="Categories" size="xl">
+          <Dropdown label="Kategoriat" size="xl">
             <Dropdown.Item>
               <NavMenuItem label="Museo" icon={<Compass size={navIconSize} />} />
             </Dropdown.Item>
