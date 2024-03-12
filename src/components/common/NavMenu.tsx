@@ -2,7 +2,7 @@
 
 import { Dropdown } from 'flowbite-react'
 import { Compass } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import EventAPI from '@components/common/EventAPI'
 import EventsButton from '@components/common/EventsButton'
@@ -18,8 +18,21 @@ interface NavMenuProps {
 
 const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
   const [display, setDisplay] = useState(false)
+  const [isMobile, setIsMobile] = useState(false);
   const navIconSize =
     variant === NavMenuVariant.TOPNAV ? AppConfig.ui.topBarIconSize : AppConfig.ui.menuIconSize
+
+    useEffect(() => {
+      const handleResize = () => {
+        setIsMobile(window.innerWidth < 660);
+      };
+  
+      window.addEventListener('resize', handleResize);
+      // Initial check in case the initial window size is less than 600px
+      handleResize();
+  
+      return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
   const listStyle =
     variant === NavMenuVariant.TOPNAV
@@ -46,7 +59,7 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
         </div>
         <div className='flex items-center w-full justify-end gap-2 sm:gap-8 px-5'>
           <EventAPI display={display} />
-          <Weather />
+          {!isMobile && (<Weather />)}
           <AuthButton />
         </div>
       </ul>
