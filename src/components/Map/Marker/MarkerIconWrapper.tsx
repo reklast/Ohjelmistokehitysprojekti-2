@@ -4,8 +4,9 @@ import { FunctionComponent, useMemo } from 'react'
 
 import { AppConfig } from '@components/lib/AppConfig'
 import placesFetch from '@src/helpers/placesFetch'
+import { IPlace } from '@src/@types/places'
 export interface CustomMarkerProps {
-  position: LatLngExpression
+  position: LatLngExpression | any
   icon?: FunctionComponent<LucideProps>
   color: string
   label?: string
