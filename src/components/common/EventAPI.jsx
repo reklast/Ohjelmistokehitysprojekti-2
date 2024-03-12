@@ -29,30 +29,32 @@ const EventsAPI = ({ display }) => {
   const styles = {
     container: {
         position:'fixed',
-        top:0,
+        top:10,
         left:250,
-      backgroundColor: 'green',
-      border: '1px solid black',
-      borderRadius: '10px',
+      backgroundColor: '#0F172A',
+      border: '2px solid black',
+      borderRadius: '15px',
       paddingTop: '25px',
-      padding: '10px',
+      padding: '20px',
+      paddingLeft: '90px',
       height: '60vh',
       width: '75vw',
-      overflowY: 'auto',
+      overflowY: 'hidden',
       marginTop: '150px',
     },
   }
   const h1Styles = {
     container: {
-      padding: '50px',
+      margin: '20px',
+      paddingLeft: '20px',
       fontSize: '26px',
-      color: 'black',
+      color: 'White',
     },
   }
   if (display) {
     return (
       <div style={styles.container}>
-        <h1 style={{ color: black, padding: 30 }}>Tapahtumat</h1>
+        <h1 style={{ color: 'white', padding: '20px', fontSize: '32px' }}>Tapahtumat</h1>
         <div style={{ maxHeight: '100%', overflowY: 'auto' }}>
           {data && Array.isArray(data) && data.length > 0 ? (
             data.map((item, index) => (
