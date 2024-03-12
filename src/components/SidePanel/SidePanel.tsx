@@ -2,11 +2,13 @@ import React, { useRef } from 'react'
 
 import useMapContext from '@components/Map/useMapContext'
 
-
 function SidePanel() {
   const { currentTarget, sidePanel, setSidePanel } = useMapContext()
   const panelContainer = useRef<HTMLDivElement>(null)
-  sidePanel && panelContainer.current?.style.setProperty('width', '40%')
+  sidePanel
+    ? panelContainer.current?.style.setProperty('width', '40%')
+    : panelContainer.current?.style.setProperty('width', '0')
+
   const closePanel = () => {
     panelContainer.current?.style.setProperty('width', '0')
     setSidePanel!(false)

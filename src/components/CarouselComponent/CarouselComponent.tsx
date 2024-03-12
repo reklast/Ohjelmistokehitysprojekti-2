@@ -15,7 +15,7 @@ import { IPlace } from '@src/@types/places'
 import { VALIDATE_NO_SPACE_URL } from '@src/helpers/regexp'
 
 function CarouselComponent() {
-  const { map, setCurrentTarget, places, sidePanel } = useMapContext()
+  const { map, setCurrentTarget, places, sidePanel, setSidePanel } = useMapContext()
   const [screenWidth, setScreenWidth] = useState(window.innerWidth)
   const [showCarousel, setShowCarousel] = useState<boolean>(true)
 
@@ -35,6 +35,7 @@ function CarouselComponent() {
 
   const onArrowButtonClick = () => {
     setShowCarousel(!showCarousel)
+    sidePanel && (setSidePanel!(false), setShowCarousel(true))
   }
 
   // determine number of slides based on the user window size
