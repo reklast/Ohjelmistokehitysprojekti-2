@@ -96,7 +96,6 @@ function CarouselComponent() {
               />
               <div className="flex absolute backdrop-brightness-50 rounded-2xl h-[inherit] w-[inherit] text-white">
                 <h1 className="text-xl mx-4 mt-4">{place.name_fi}</h1>
-                <h2 className="text-xs">{place.short_desc_fi}</h2>
               </div>
             </div>
           ))}
