@@ -1,9 +1,7 @@
-import React, { LegacyRef, useRef } from 'react'
+import React, { useRef } from 'react'
 
 import useMapContext from '@components/Map/useMapContext'
-import { PlacesType } from '@components/lib/Places'
 
-import { IPlace } from '@src/@types/places'
 
 function SidePanel() {
   const { currentTarget, sidePanel, setSidePanel } = useMapContext()

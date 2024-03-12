@@ -54,7 +54,7 @@ function CarouselComponent() {
   useEffect(() => {
     showCarousel
       ? carousel.current?.style.setProperty('bottom', '0')
-      : carousel.current?.style.setProperty('bottom', '-26%');
+      : carousel.current?.style.setProperty('bottom', '-26%')
 
     sidePanel && setShowCarousel(false)
 
@@ -75,10 +75,10 @@ function CarouselComponent() {
   const numSlides = slidesNum() // Call once and store the result
   for (let i = 0; i < placesWithPic?.length!; i += numSlides) {
     const slice = placesWithPic?.slice(i, i + numSlides)
-    const slide = slice?.map(() => (
+    const slide = (
       <div key={i} className="flex justify-center">
         <div className="flex justify-evenly items-center w-full">
-          {slice.map((place: IPlace) => (
+          {slice?.map((place: IPlace) => (
             <div
               key={place.id}
               onClick={() => handleCardClick([place.latitude, place.longitude], place)}
@@ -98,7 +98,7 @@ function CarouselComponent() {
           ))}
         </div>
       </div>
-    ))
+    )
     slides.push(slide! as unknown as ReactElement<any, string | JSXElementConstructor<any>>)
   }
 
@@ -118,5 +118,4 @@ function CarouselComponent() {
     </Suspense>
   )
 }
-
 export default CarouselComponent
