@@ -58,7 +58,7 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
           <EventsButton display={display} setDisplay={setDisplay} />
         </div>
         <div className='flex items-center w-full justify-end gap-2 sm:gap-8 px-5'>
-          <EventAPI display={display} />
+          {!isMobile && (<EventAPI display={display} />)}
           {!isMobile && (<Weather />)}
           <AuthButton />
         </div>
