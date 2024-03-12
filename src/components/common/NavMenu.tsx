@@ -23,15 +23,15 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
 
   const listStyle =
     variant === NavMenuVariant.TOPNAV
-      ? `flex text-white justify-between text-lg text-white text-sm md:text-base`
+      ? `flex text-white justify-between text-lg text-white md:text-base`
       : `flex flex-col justify-between gap-1 w-fit text-primary`
+
 
   return (
     <>
       <ul className={`${listStyle}`}>
-        <div className="flex items-center gap-1 sm:gap-8 w-full justify-start">
-          <EventsButton display={display} setDisplay={setDisplay} />
-          <Dropdown className="p-0 text-base" label="categories">
+        <div className="flex items-center gap-4 lg:gap-10 w-full justify-start">
+          <Dropdown label="Categories" size="xl">
             <Dropdown.Item>
               <NavMenuItem label="Museo" icon={<Compass size={navIconSize} />} />
             </Dropdown.Item>
@@ -42,6 +42,7 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
               <NavMenuItem label="Teatteri" icon={<Compass size={navIconSize} />} />
             </Dropdown.Item>
           </Dropdown>
+          <EventsButton display={display} setDisplay={setDisplay} />
         </div>
         <div className='flex items-center w-full justify-end gap-2 sm:gap-8'>
           <EventAPI display={display} />
