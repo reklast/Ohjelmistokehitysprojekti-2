@@ -10,8 +10,8 @@ const WeatherComponent = () => {
   const weatherStyles = {
     container: {
       position: 'fixed',
-      top: 0,
-      left: 800,
+      top: 9,
+      left: 650,
     },
   }
   useEffect(() => {
@@ -56,7 +56,7 @@ const WeatherComponent = () => {
   return (
     <div style={weatherStyles.container} className='flex items-center'>
       <WeatherIcon iconUrl={weatherData.current.condition.icon} alt={weatherData.current.condition.text} />
-      <p>Temperature: {weatherData.current.temp_c} °C</p>
+      <p>Lämpötila: {weatherData.current.temp_c} °C</p>
     </div>
   )
 }
