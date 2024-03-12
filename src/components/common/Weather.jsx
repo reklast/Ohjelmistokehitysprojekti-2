@@ -10,8 +10,8 @@ const WeatherComponent = () => {
   const weatherStyles = {
     container: {
       position: 'fixed',
-      top: 0,
-      left: 800,
+      top: 9,
+      left: 650,
     },
   }
   useEffect(() => {
