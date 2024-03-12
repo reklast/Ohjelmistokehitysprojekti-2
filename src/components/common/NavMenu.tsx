@@ -55,10 +55,10 @@ const NavMenu = ({ variant = NavMenuVariant.INTRO }: NavMenuProps) => {
               <NavMenuItem label="Teatteri" icon={<Compass size={navIconSize} />} />
             </Dropdown.Item>
           </Dropdown>
-          <EventsButton display={display} setDisplay={setDisplay} />
+          {!isMobile && <EventsButton display={display} setDisplay={setDisplay} />}
         </div>
         <div className='flex items-center w-full justify-end gap-2 sm:gap-8 px-5'>
-          {!isMobile && (<EventAPI display={display} />)}
+          <EventAPI display={display} />
           {!isMobile && (<Weather />)}
           <AuthButton />
         </div>
