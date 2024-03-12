@@ -49,9 +49,8 @@ const WeatherComponent = () => {
   return (
     <div className="flex justify-between pr-6 sm:justify-normal items-center">
       <WeatherIcon iconUrl={weatherData.current.condition.icon} alt={weatherData.current.condition.text} />
-      <p className='text-center'>
-        <p className="hidden sm:block p-2">Lämpötila:</p> {weatherData.current.temp_c} °C
-      </p>
+      <p className="hidden sm:block p-2">Lämpötila:</p>{' '}
+      <p className="text-center">{weatherData.current.temp_c} °C</p>
     </div>
   )
 }
