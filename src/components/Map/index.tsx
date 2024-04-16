@@ -55,7 +55,7 @@ const MapInner = () => {
         console.log('an error occured during API data fetching:', e)
         setIsDataLoading(false) // On error, also set loading false
       })
-  }, [category])
+  }, [category, setPlaces])
 
   const {
     width: viewportWidth,

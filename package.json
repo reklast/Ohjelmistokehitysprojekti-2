@@ -18,7 +18,7 @@
     "graphql": "^16.8.1",
     "leaflet": "^1.9.3",
     "leaflet.markercluster": "^1.5.3",
-    "lucide-react": "^0.121.0",
+    "lucide-react": "^0.368.0",
     "mongoose": "^8.2.0",
     "next": "14.1.0",
     "next-auth": "^4.24.6",
